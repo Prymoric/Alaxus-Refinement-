@@ -1,0 +1,255 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Alaxus Hub",
+   LoadingTitle = "Alaxus is Loading",
+   LoadingSubtitle = "by Alaxus",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Alaxus Hub"
+   },
+   Discord = {
+      Enabled = true,
+      Invite = "discord.gg/WhktUxAGNf", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+      RememberJoins = false -- Set this to false to make them join the discord every time they load it up
+   },
+   KeySystem = true, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Alaxus Hub",
+      Note = "Get the key in my Discord: https://discord.gg/WhktUxAGNf",
+      Subtitle = "Key System",
+      FileName = "Alaxus - Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = true, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"jdjeueh884ijb2bsj"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+      }
+})
+
+Rayfield:Notify({
+   Title = "Made By Prymoric",
+   Content = "This script is free not paid",
+   Duration = 6.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+},
+})
+
+local Tab = Window:CreateTab("Setting", 4483362458) -- Title, Image
+
+local Section = Tab:CreateSection("Combat")
+
+local Toggle = Tab:CreateToggle({
+   Name = "Auto Parry v1",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+      getgenv().ScriptConfig = {
+    -- Distance in stud before the automatic triggers,
+    -- you may change even after you have ran the script if you desire!
+    -- Just be sure to REMOVE the loadstring, or else you will face some... issues
+	DistanceBeforeParry = 46,
+}
+ 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Sussy-Tech/Scripts/main/BladeBall.lua"))()
+
+   end,
+})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Auto Parry v2",
+   CurrentValue = false,
+   Flag = "Toggle2", 
+   Callback = function(Value)
+      getgenv().visualizer = true
+loadstring(game:HttpGet("https://raw.githubusercontent.com/1f0yt/community/main/RedCircleBlock"))()
+
+   end,
+})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Auto Parry v3 (Best)",
+   CurrentValue = false,
+   Flag = "Toggle3",
+   Callback = function(Value)
+      getgenv().config = getgenv().config or {
+	hit_time = 0.5, -- // recommended 0.25 to 0.75 \\ --
+ 
+	mode = 'Always', -- // Hold , Toggle , Always \\ --
+	deflect_type = 'Remote', -- // Key Press , Remote \\ --
+	notifications = true,
+	keybind = Enum.KeyCode.V
+}
+ 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Parry%20V4.0.0",true))()
+
+   end,
+})
+
+local Section = Tab:CreateSection("Spam")
+
+local Toggle = Tab:CreateToggle({
+   Name = "Hold Block Button to Spam",
+   CurrentValue = false,
+   Flag = "Toggle4",
+   Callback = function(Value)
+      getgenv().SpamSpeed = 1 loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Spam",true))()
+      
+   end,
+})
+
+local Section = Tab:CreateSection("Config")
+
+local Toggle = Tab:CreateToggle({
+   Name = "Fps Booster",
+   CurrentValue = false,
+   Flag = "Toggle5",
+   Callback = function(Value)
+       _G.Settings = {
+    Players = {
+        ["Ignore Me"] = true, -- Ignore your Character
+        ["Ignore Others"] = true-- Ignore other Characters
+    },
+    Meshes = {
+        Destroy = false, -- Destroy Meshes
+        LowDetail = true -- Low detail meshes (NOT SURE IT DOES ANYTHING)
+    },
+    Images = {
+        Invisible = true, -- Invisible Images
+        LowDetail = false, -- Low detail images (NOT SURE IT DOES ANYTHING)
+        Destroy = false, -- Destroy Images
+    },
+    ["No Particles"] = true, -- Disables all ParticleEmitter, Trail, Smoke, Fire and Sparkles
+    ["No Camera Effects"] = true, -- Disables all PostEffect's (Camera/Lighting Effects)
+    ["No Explosions"] = true, -- Makes Explosion's invisible
+    ["No Clothes"] = true, -- Removes Clothing from the game
+    ["Low Water Graphics"] = true, -- Removes Water Quality
+    ["No Shadows"] = true, -- Remove Shadows
+    ["Low Rendering"] = true, -- Lower Rendering
+    ["Low Quality Parts"] = true -- Lower quality parts
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CasperFlyModz/discord.gg-rips/main/FPSBooster.lua"))()
+       
+   end,
+})
+
+local Section = Tab:CreateSection("Movement")
+
+local Button = Tab:CreateButton({
+   Name = "WalkSpeed",
+   Callback = function()
+       -- Variables
+local speedValue = 16 -- Default speed value
+
+-- Create GUI
+local gui = Instance.new("ScreenGui")
+gui.Name = "JN HH Gaming"
+gui.Parent = game.Players.LocalPlayer.PlayerGui
+
+local frame = Instance.new("Frame")
+frame.Name = "SpeedFrame"
+frame.Size = UDim2.new(0, 200, 0, 100)
+frame.Position = UDim2.new(0, 10, 0, 10)
+frame.BackgroundColor3 = Color3.new(0, 0, 0)
+frame.BackgroundTransparency = 0.5
+frame.Parent = gui
+
+local speedLabel = Instance.new("TextLabel")
+speedLabel.Name = "SpeedLabel"
+speedLabel.Size = UDim2.new(0, 180, 0, 30)
+speedLabel.Position = UDim2.new(0, 10, 0, 10)
+speedLabel.BackgroundColor3 = Color3.new(0, 0, 0)
+speedLabel.TextColor3 = Color3.new(1, 1, 1)
+speedLabel.TextSize = 18
+speedLabel.Text = "Speed: " .. speedValue
+speedLabel.Parent = frame
+
+local decreaseButton = Instance.new("TextButton")
+decreaseButton.Name = "DecreaseButton"
+decreaseButton.Size = UDim2.new(0, 50, 0, 30)
+decreaseButton.Position = UDim2.new(0, 10, 0, 50)
+decreaseButton.BackgroundColor3 = Color3.new(0, 1, 0)
+decreaseButton.TextColor3 = Color3.new(1, 1, 1)
+decreaseButton.TextSize = 14
+decreaseButton.Text = "-"
+decreaseButton.Parent = frame
+
+local increaseButton = Instance.new("TextButton")
+increaseButton.Name = "IncreaseButton"
+increaseButton.Size = UDim2.new(0, 50, 0, 30)
+increaseButton.Position = UDim2.new(0, 140, 0, 50)
+increaseButton.BackgroundColor3 = Color3.new(0, 1, 0)
+increaseButton.TextColor3 = Color3.new(1, 1, 1)
+increaseButton.TextSize = 14
+increaseButton.Text = "+"
+increaseButton.Parent = frame
+
+-- Functions
+local function updateSpeedLabel()
+    speedLabel.Text = "Speed: " .. speedValue
+end
+
+local function decreaseSpeed()
+    if speedValue > 1 then
+        speedValue = speedValue - 1
+        updateSpeedLabel()
+    end
+end
+
+local function increaseSpeed()
+    speedValue = speedValue + 1
+    updateSpeedLabel()
+end
+
+local function onDecreaseButtonClicked()
+    decreaseSpeed()
+end
+
+local function onIncreaseButtonClicked()
+    increaseSpeed()
+end
+
+-- Event connections
+decreaseButton.MouseButton1Click:Connect(onDecreaseButtonClicked)
+increaseButton.MouseButton1Click:Connect(onIncreaseButtonClicked)
+
+-- Main loop
+while true do
+    -- Modify the speed of the character (you need to replace this with the appropriate code for your specific game)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speedValue
+    wait(0.1) -- Adjust the wait time as desired
+end
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Keyboard Script (Search Left Control to Close gui)",
+   Callback = function()
+      loadstring(game:HttpGet("https://gist.githubusercontent.com/RedZenXYZ/4d80bfd70ee27000660e4bfa7509c667/raw/da903c570249ab3c0c1a74f3467260972c3d87e6/KeyBoard%2520From%2520Ohio%2520Fr%2520Fr"))()
+      
+   end,
+})
+
+local Tab = Window:CreateTab("Credits", 4483362458) -- Title, Image
+
+local Button = Tab:CreateButton({
+   Name = "Script made by Prymoric",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Join my discord (Click to get my discord link)",
+   Callback = function()
+       setclipboard("https://discord.gg/WhktUxAGNf")
+   end,
+})
+
+Rayfield:LoadConfiguration(
