@@ -178,8 +178,8 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "TOP | BladeBall hub" .. Fluent.Version,
-    SubTitle = "by top_playzyt in discord",
+    Title = "Alaxus Hub" .. Fluent.Version,
+    SubTitle = "by Prymoric",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = true,
@@ -189,7 +189,7 @@ local Window = Fluent:CreateWindow({
 
 local Tabs = {
     Main = Window:AddTab({ Title = "Auto Parry", Icon = "" }),
-    Main2 = Window:AddTab({ Title = "Player", Icon = "" }), 
+    Main2 = Window:AddTab({ Title = "Combat", Icon = "" }), 
 }
 
 local function createFluentToggle(tab, title, default, callback)
@@ -267,4 +267,16 @@ ParryDistanceConfig:OnChanged(function(Value)
     sliderValue = Value
 end)
 
-ParryDistanceConfig:SetValue(20
+ParryDistanceConfig:SetValue(20)
+
+local Toggle = Tabs.Main2:AddToggle("MyToggle", {Title = "Auto Parry V1", Default = false })
+
+    Toggle:OnChanged(function()
+        getgenv().ScriptConfig = {
+
+	DistanceBeforeParry = 46,
+}
+ 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Sussy-Tech/Scripts/main/BladeBall.lua"))()
+
+end)
