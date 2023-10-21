@@ -1,12 +1,514 @@
---[[
- .____                  ________ ___.    _____                           __                
- |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
- |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
- |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
- |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
-         \/          \/         \/    \/                \/     \/     \/                   
-          \_Welcome to LuaObfuscator.com   (Alpha 0.9.16) ~  Much Love, Ferib 
+local runService = game:GetService("RunService")
+local workspace = game:GetService("Workspace")
+local players = game:GetService("Players")
+local localPlayer = players.LocalPlayer
+local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+local abilitiesFolder = character:WaitForChild("Abilities")
+local UserInputService = game:GetService("UserInputService")
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local heartbeatConnection
+local upgrades = localPlayer.Upgrades
+local UseRage = false
+local sliderValue = 20
 
-]]--
+local function onCharacterAdded(newCharacter)
+    character = newCharacter
+    abilitiesFolder = character:WaitForChild("Abilities")
+end
 
-local v0=game:GetService("RunService");local v1=game:GetService("Workspace");local v2=game:GetService("Players");local v3=v2.LocalPlayer;local v4=v3.Character or v3.CharacterAdded:Wait() ;local v5=v4:WaitForChild("Abilities");local v6=game:GetService("UserInputService");local v7=game:GetService("ReplicatedStorage");local v8;local v9=v3.Upgrades;local v10=false;local v11=50 -(5 + 25) ;local function v12(v26)local v27=1187 -(1069 + 118) ;while true do if (v27==0) then v4=v26;v5=v4:WaitForChild("Abilities");break;end end end v3.CharacterAdded:Connect(v12);local v13=Instance.new("StringValue");if v1:FindFirstChild("AbilityThingyk1212") then local v109=0 -0 ;while true do if (v109==2) then v13.Value="Dash";break;end if (v109==1) then v13.Parent=game:GetService("Workspace");v13.Name="AbilityThingyk1212";v109=2;end if (v109==(0 -0)) then v1:FindFirstChild("AbilityThingyk1212"):Remove();task.wait(0.1 + 0 );v109=1 -0 ;end end else local v110=0;while true do if ((1 + 0)==v110) then v13.Value="Dash";break;end if (v110==(791 -(368 + 423))) then v13.Parent=game:GetService("Workspace");v13.Name="AbilityThingyk1212";v110=3 -2 ;end end end local function v14()local v28=18 -(10 + 8) ;local v29;local v30;local v31;local v32;local v33;local v34;local v35;local v36;local v37;local v38;local v39;local v40;local v41;while true do if (v28==(7 -5)) then function v33(v126)v29=v126;end v3.CharacterAdded:Connect(v33);if v29 then print("Character found.");else print("Character not found.");return;end v28=445 -(416 + 26) ;end if (v28==(19 -13)) then function v39(v127,v128,v129)local v130=0 + 0 ;local v131;local v132;while true do if (v130==(0 -0)) then v131=(v29.HumanoidRootPart.Position-focusedBall.Position).Unit;v132=v127:Dot(v131) -v129:Dot(v131) ;v130=439 -(145 + 293) ;end if (v130==(431 -(44 + 386))) then if (v132<=0) then return math.huge;end return (v128-v11)/v132 ;end end end v40=nil;function v40()local v133=v29:FindFirstChildOfClass("Humanoid");if v133 then return v133.WalkSpeed==0 ;end return false;end v28=1493 -(998 + 488) ;end if (v28==4) then v35=0.15;v36=0.05 + 0 ;v37=0.1;v28=5 + 0 ;end if (v28==(779 -(201 + 571))) then v41=nil;function v41()if ( not v29 or  not v29:FindFirstChild("Highlight")) then return;end local v134=v29.PrimaryPart.Position;local v135=v29.PrimaryPart.Velocity;if (focusedBall and  not focusedBall.Parent) then local v144=1138 -(116 + 1022) ;while true do if (v144==(0 -0)) then print("Focused ball lost parent. Choosing a new focused ball.");v34();break;end end end if  not focusedBall then print("No focused ball.");v34();end local v136=focusedBall;local v137=(v136.Position-v134).Magnitude;local v138=v136.Velocity:Dot((v134-v136.Position).Unit);if (v137<(6 + 4)) then v31:Fire();end local v139=false;if (v39(v136.Velocity,v137,v135)<v38(v138)) then if (v29.Abilities["Raging Deflection"].Enabled and (v10==true)) then if  not v139 then local v152=0 -0 ;while true do if (v152==1) then if  not v40() then v31:Fire();end v139=false;break;end if (v152==0) then v139=true;v32:Fire();v152=3 -2 ;end end end else v31:Fire();end end end v8=game:GetService("RunService").Heartbeat:Connect(function()v41();end);break;end if (v28==(862 -(814 + 45))) then v34=nil;function v34()local v140=0 -0 ;local v141;while true do if (v140==(1 + 0)) then if (focusedBall==nil) then print("Debug: Could not find a ball that's the realBall or has a target.");end return focusedBall;end if (v140==(0 + 0)) then v141=v30:GetChildren();for v148,v149 in ipairs(v141) do if ((v149:GetAttribute("realBall")~=nil) and (v149:GetAttribute("realBall")==true)) then focusedBall=v149;print(focusedBall.Name);break;elseif (v149:GetAttribute("target")~=nil) then focusedBall=v149;print(focusedBall.Name);break;end end v140=886 -(261 + 624) ;end end end v34();v28=6 -2 ;end if (v28==1) then v32=v7.Remotes.AbilityButtonPress;print("Script successfully ran.");v33=nil;v28=2;end if (v28==(1085 -(1020 + 60))) then v38=nil;function v38(v142)if (v142>60) then local v145=1423 -(630 + 793) ;while true do if ((0 -0)==v145) then print("Going Fast!");return math.max(0.2,v35-(v142 * v36) );end end else return math.min(0.01 -0 ,v35 + (v142 * v37) );end end v39=nil;v28=6;end if (v28==(0 + 0)) then v29=v3.Character or v3.CharacterAdded:Wait() ;v30=v1:WaitForChild("Balls");v31=v7.Remotes.ParryButtonPress;v28=3 -2 ;end end end local function v15()if v8 then v8:Disconnect();v8=nil;end end local function v16(v42,v43,v44,v45)Fluent:Notify({Title=v42,Content=v43,SubContent=v45,Duration=v44 or (1752 -(760 + 987)) });end local v17=loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))();local v18=loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))();local v19=loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))();local v20=v17:CreateWindow({Title="Alaxus Hub - "   .. v17.Version ,SubTitle="by Prymoric",TabWidth=160,Size=UDim2.fromOffset(2493 -(1789 + 124) ,1226 -(745 + 21) ),Acrylic=true,Theme="Darker",MinimizeKey=Enum.KeyCode.LeftControl});local v21={Main=v20:AddTab({Title="Main",Icon=""}),Main2=v20:AddTab({Title="Combat",Icon=""}),Main3=v20:AddTab({Title="Credits",Icon=""})};local function v22(v46,v47,v48,v49)local v50=v46:AddToggle(v47,{Title=v47,Default=v48});v50:OnChanged(v49);return v50;end local function v23(v51,v52)while v51 do local v111=0 + 0 ;while true do if (v111==(0 -0)) then wait();if v51 then local v146=0 -0 ;while true do if (v146==(0 + 0)) then v4.Parent=v1.Alive;if ((v3.PlayerGui.announcer.TextBox.Text=="Starting Game") or (v3.PlayerGui.announcer.TextBox.Text=="Starting Team Game")) then local v153=0 + 0 ;while true do if (v153==1) then if (v52=="Safe Respawn Teleport") then task.wait(1060 -(87 + 968) );v4.HumanoidRootPart.CFrame=CFrame.new(121231212313 -0 ,121231213,12123125000 -(995 + 792) );end break;end if (v153==(763 -(82 + 681))) then v4.Humanoid.Health=0 -0 ;v3.PlayerGui.announcer.TextBox.Text="e";v153=1;end end end break;end end end break;end end end end v22(v21.Main,"Automatic Parry Mode",false,function(v53)if v53 then v14();else v15();end end);v22(v21.Main,"Automatic Raging Deflection Mode",false,function(v54)v10=v54;end);v22(v21.Main,"Partial Legit Spawn Mode",false,function(v55)v23(v55,"Partial Legit Spawn Mode");end);v22(v21.Main,"Safe Respawn Teleport",false,function(v56)v23(v56,"Safe Respawn Teleport");end);local v24=v7.Remotes.ParryButtonPress;v21.Main:AddKeybind("Rapid Parry Activation",{Title="Rapid Parry Activation",Mode="Hold",Default="C",Callback=function(v57)if v57 then v24:Fire();end end});local v25=v21.Main:AddSlider("Parry Distance Configuration",{Title="Parry Distance Configuration",Description="Adjust the effective parry distance",Default=20,Min=1709 -(71 + 1638) ,Max=756 -456 ,Rounding=1 + 0 ,Callback=function(v58)v11=v58;end});v25:OnChanged(function(v59)v11=v59;end);v25:SetValue(94 -74 );v21.Main2:AddButton({Title="Auto Parry V1",Description="Mobile & Pc",Callback=function()local v60=0 + 0 ;while true do if (v60==(0 + 0)) then getgenv().ScriptConfig={DistanceBeforeParry=46};loadstring(game:HttpGet("https://raw.githubusercontent.com/Sussy-Tech/Scripts/main/BladeBall.lua"))();break;end end end});v21.Main2:AddButton({Title="Auto Parry V2",Description="Mobile & Pc",Callback=function()getgenv().visualizer=true;loadstring(game:HttpGet("https://raw.githubusercontent.com/1f0yt/community/main/RedCircleBlock"))();end});v21.Main2:AddButton({Title="Auto Parry V3",Description="Mobile & Pc Support 300ms BEST!",Callback=function()getgenv().config=getgenv().config or {hit_time=0.5 -0 ,mode="Always",deflect_type="Remote",notifications=true,keybind=Enum.KeyCode.V} ;loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Parry%20V4.0.0",true))();end});v21.Main2:AddButton({Title="Target Mechanism",Description="For Mobile Only",Callback=function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/M%3ABlade%20Ball%20Mechanism",true))();end});v21.Main2:AddParagraph({Title="Close Combat",Content="This is for Close Combat When it Comes to Clash"});v21.Main2:AddButton({Title="Auto Clicker",Description="Auto Clicker Toggle",Callback=function()loadstring(game:HttpGet("https://raw.githubusercontent.com/marmfjjwjw223/DownGroud/main/DOWNGROUND"))();end});v21.Main2:AddButton({Title="Hold Block Button to Spam",Description="Hold Block Button to Spam Close Range or Clash",Callback=function()local v63=0 + 0 ;while true do if (v63==0) then getgenv().SpamSpeed=1;loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Spam",true))();break;end end end});v21.Main2:AddParagraph({Title="Config",Content="Things can help you out"});v21.Main2:AddButton({Title="Fps Booster",Description="Lessen Water effects and platform",Callback=function()_G.Settings={Players={["Ignore Me"]=true,["Ignore Others"]=true},Meshes={Destroy=false,LowDetail=true},Images={Invisible=true,LowDetail=false,Destroy=false},["No Particles"]=true,["No Camera Effects"]=true,["No Explosions"]=true,["No Clothes"]=true,["Low Water Graphics"]=true,["No Shadows"]=true,["Low Rendering"]=true,["Low Quality Parts"]=true};loadstring(game:HttpGet("https://raw.githubusercontent.com/CasperFlyModz/discord.gg-rips/main/FPSBooster.lua"))();end});v21.Main2:AddButton({Title="WalkSpeed",Description="Increase WalkSpeed",Callback=function()local v64=1146 -(87 + 1043) ;local v65=Instance.new("ScreenGui");v65.Name="JN HH Gaming";v65.Parent=game.Players.LocalPlayer.PlayerGui;local v69=Instance.new("Frame");v69.Name="SpeedFrame";v69.Size=UDim2.new(0,648 -(10 + 438) ,0,82 + 18 );v69.Position=UDim2.new(0,38 -28 ,0 + 0 ,1190 -(1123 + 57) );v69.BackgroundColor3=Color3.new(0 + 0 ,0,254 -(163 + 91) );v69.BackgroundTransparency=1930.5 -(1869 + 61) ;v69.Parent=v65;local v76=Instance.new("TextLabel");v76.Name="SpeedLabel";v76.Size=UDim2.new(0,51 + 129 ,0,30);v76.Position=UDim2.new(0 -0 ,10,0,15 -5 );v76.BackgroundColor3=Color3.new(0,0 + 0 ,0);v76.TextColor3=Color3.new(1 -0 ,1 + 0 ,1475 -(1329 + 145) );v76.TextSize=989 -(140 + 831) ;v76.Text="Speed: "   .. v64 ;v76.Parent=v69;local v85=Instance.new("TextButton");v85.Name="DecreaseButton";v85.Size=UDim2.new(1850 -(1409 + 441) ,768 -(15 + 703) ,0 + 0 ,468 -(262 + 176) );v85.Position=UDim2.new(1721 -(345 + 1376) ,10,688 -(198 + 490) ,220 -170 );v85.BackgroundColor3=Color3.new(0,1,0 -0 );v85.TextColor3=Color3.new(1207 -(696 + 510) ,1,1 -0 );v85.TextSize=1276 -(1091 + 171) ;v85.Text="-";v85.Parent=v69;local v94=Instance.new("TextButton");v94.Name="IncreaseButton";v94.Size=UDim2.new(0 + 0 ,157 -107 ,0,99 -69 );v94.Position=UDim2.new(374 -(123 + 251) ,695 -555 ,698 -(208 + 490) ,5 + 45 );v94.BackgroundColor3=Color3.new(0,1,0);v94.TextColor3=Color3.new(1 + 0 ,837 -(660 + 176) ,1);v94.TextSize=14;v94.Text="+";v94.Parent=v69;local function v103()v76.Text="Speed: "   .. v64 ;end local function v104()if (v64>(1 + 0)) then local v119=202 -(14 + 188) ;while true do if (v119==(675 -(534 + 141))) then v64=v64-(1 + 0) ;v103();break;end end end end local function v105()local v113=0;while true do if (v113==(0 + 0)) then v64=v64 + 1 ;v103();break;end end end local function v106()v104();end local function v107()v105();end v85.MouseButton1Click:Connect(v106);v94.MouseButton1Click:Connect(v107);while true do local v114=0;while true do if ((0 + 0)==v114) then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=v64;wait(0.1 -0 );break;end end end end});v21.Main2:AddButton({Title="Keyboard",Description="Search LeftControl to hide Gui or Close/Open",Callback=function()loadstring(game:HttpGet("https://gist.githubusercontent.com/RedZenXYZ/4d80bfd70ee27000660e4bfa7509c667/raw/da903c570249ab3c0c1a74f3467260972c3d87e6/KeyBoard%2520From%2520Ohio%2520Fr%2520Fr"))();end});v21.Main3:AddParagraph({Title="Made By Prymoric",Content="Alaxus Hub"});v21.Main3:AddButton({Title="Join My Discord Server (Click this to Copy Discord Link)",Description="To aware the update of alaxus or why its not working",Callback=function()local v108=0 -0 ;while true do if (v108==(0 -0)) then setclipboard("https://discord.gg/VWtevRyBES");DiscordNotification();break;end end end});function DiscordNotification()v17:Notify({Title="Copied Discord Link!",Content="The Discord link is in your clipboard",SubContent="Copied!",Duration=3 + 2 });end
+localPlayer.CharacterAdded:Connect(onCharacterAdded)
+
+local TruValue = Instance.new("StringValue")
+if workspace:FindFirstChild("AbilityThingyk1212") then
+    workspace:FindFirstChild("AbilityThingyk1212"):Remove()
+    task.wait(0.1)
+    TruValue.Parent = game:GetService("Workspace")
+        TruValue.Name = "AbilityThingyk1212"
+        TruValue.Value = "Dash" --Change to Use other ability
+    else
+        TruValue.Parent = game:GetService("Workspace")
+        TruValue.Name = "AbilityThingyk1212"
+        TruValue.Value = "Dash" --Change to Use other ability
+end
+
+local function startAutoParry()
+    local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+    local ballsFolder = workspace:WaitForChild("Balls")
+    local parryButtonPress = replicatedStorage.Remotes.ParryButtonPress
+    local abilityButtonPress = replicatedStorage.Remotes.AbilityButtonPress
+
+    print("Script successfully ran.")
+
+    local function onCharacterAdded(newCharacter)
+        character = newCharacter
+    end
+    localPlayer.CharacterAdded:Connect(onCharacterAdded)
+
+    if character then
+        print("Character found.")
+    else
+        print("Character not found.")
+        return
+    end
+    
+
+local function chooseNewFocusedBall()
+    local balls = ballsFolder:GetChildren()
+    for _, ball in ipairs(balls) do
+        if ball:GetAttribute("realBall") ~= nil and ball:GetAttribute("realBall") == true then
+            focusedBall = ball
+            print(focusedBall.Name)
+            break
+        elseif ball:GetAttribute("target") ~= nil then
+            focusedBall = ball
+            print(focusedBall.Name)
+            break
+        end
+    end
+    
+    if focusedBall == nil then
+        print("Debug: Could not find a ball that's the realBall or has a target.")
+    end
+    return focusedBall
+end
+
+
+
+
+
+    chooseNewFocusedBall()
+
+    local BASE_THRESHOLD = 0.15
+    local VELOCITY_SCALING_FACTOR_FAST = 0.050
+    local VELOCITY_SCALING_FACTOR_SLOW = 0.1
+
+    local function getDynamicThreshold(ballVelocityMagnitude)
+        if ballVelocityMagnitude > 60 then
+            print("Going Fast!")
+            return math.max(0.20, BASE_THRESHOLD - (ballVelocityMagnitude * VELOCITY_SCALING_FACTOR_FAST))
+        else
+            return math.min(0.01, BASE_THRESHOLD + (ballVelocityMagnitude * VELOCITY_SCALING_FACTOR_SLOW))
+        end
+    end
+
+    local function timeUntilImpact(ballVelocity, distanceToPlayer, playerVelocity)
+        local directionToPlayer = (character.HumanoidRootPart.Position - focusedBall.Position).Unit
+        local velocityTowardsPlayer = ballVelocity:Dot(directionToPlayer) - playerVelocity:Dot(directionToPlayer)
+        
+        if velocityTowardsPlayer <= 0 then
+            return math.huge
+        end
+        
+        return (distanceToPlayer - sliderValue) / velocityTowardsPlayer
+    end
+
+    local function isWalkSpeedZero()
+        local humanoid = character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            return humanoid.WalkSpeed == 0
+        end
+        return false
+    end
+
+
+    local function checkBallDistance()
+        if not character or not character:FindFirstChild("Highlight") then return end
+
+        local charPos = character.PrimaryPart.Position
+        local charVel = character.PrimaryPart.Velocity
+
+        if focusedBall and not focusedBall.Parent then
+            print("Focused ball lost parent. Choosing a new focused ball.")
+            chooseNewFocusedBall()
+        end
+        if not focusedBall then 
+            print("No focused ball.")
+            chooseNewFocusedBall()
+        end
+
+        local ball = focusedBall
+        local distanceToPlayer = (ball.Position - charPos).Magnitude
+        local ballVelocityTowardsPlayer = ball.Velocity:Dot((charPos - ball.Position).Unit)
+        
+        if distanceToPlayer < 10 then
+            parryButtonPress:Fire()
+        end
+        local isCheckingRage = false
+
+        if timeUntilImpact(ball.Velocity, distanceToPlayer, charVel) < getDynamicThreshold(ballVelocityTowardsPlayer) then
+            if character.Abilities["Raging Deflection"].Enabled and UseRage == true then
+                if not isCheckingRage then
+                    isCheckingRage = true
+                    abilityButtonPress:Fire()
+                    if not isWalkSpeedZero() then
+                        parryButtonPress:Fire()
+                    end
+                    isCheckingRage = false
+                end
+            else
+                parryButtonPress:Fire()
+            end
+        end
+    end
+
+
+    heartbeatConnection = game:GetService("RunService").Heartbeat:Connect(function()
+        checkBallDistance()
+    end)
+end
+
+local function stopAutoParry()
+    if heartbeatConnection then
+        heartbeatConnection:Disconnect()
+        heartbeatConnection = nil
+    end
+end
+
+local function notify(title, content, duration, subContent)
+    Fluent:Notify({
+        Title = title,
+        Content = content,
+        SubContent = subContent, -- It'll be nil if not provided, which is okay.
+        Duration = duration or 5,
+    })
+end
+
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
+local Window = Fluent:CreateWindow({
+    Title = "Alaxus Hub - " .. Fluent.Version,
+    SubTitle = "by Prymoric",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true,
+    Theme = "Darker",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+
+local Tabs = {
+    Main = Window:AddTab({ Title = "Main", Icon = "" }),
+    Main2 = Window:AddTab({ Title = "Combat", Icon = "" }), 
+    Main3 = Window:AddTab({ Title = "Credits", Icon = "" }),
+}
+
+local function createFluentToggle(tab, title, default, callback)
+    local toggle = tab:AddToggle(title, {Title = title, Default = default})
+    toggle:OnChanged(callback)
+    return toggle
+end
+
+local function handleSpawnLogic(stayspawnshit, title)
+    while stayspawnshit do 
+        wait()
+        if stayspawnshit then
+            character.Parent = workspace.Alive
+            if localPlayer.PlayerGui.announcer.TextBox.Text == "Starting Game" or localPlayer.PlayerGui.announcer.TextBox.Text == "Starting Team Game" then
+                character.Humanoid.Health = 0
+                localPlayer.PlayerGui.announcer.TextBox.Text = "e"
+                if title == "Safe Respawn Teleport" then
+                    task.wait(5)
+                    character.HumanoidRootPart.CFrame = CFrame.new(121231212313,121231213,12123123213)
+                end
+            end
+        end
+    end
+end
+
+-- 1. Automatic Parry Mode Toggle
+createFluentToggle(Tabs.Main, "Automatic Parry Mode", false, function(value)
+    if value then
+        startAutoParry() -- Assuming this function is defined elsewhere
+    else
+        stopAutoParry() -- Assuming this function is defined elsewhere
+    end
+end)
+
+-- 2. Automatic Raging Deflection Mode Toggle
+createFluentToggle(Tabs.Main, "Automatic Raging Deflection Mode", false, function(value)
+    UseRage = value -- Assuming UseRage is defined globally or used in another function
+end)
+
+-- 3. Partial Legit Spawn Mode Toggle
+createFluentToggle(Tabs.Main, "Partial Legit Spawn Mode", false, function(value)
+    handleSpawnLogic(value, "Partial Legit Spawn Mode")
+end)
+
+-- 4. Safe Respawn Teleport Toggle
+createFluentToggle(Tabs.Main, "Safe Respawn Teleport", false, function(value)
+    handleSpawnLogic(value, "Safe Respawn Teleport")
+end)
+
+local parryButtonPress = replicatedStorage.Remotes.ParryButtonPress -- Assuming replicatedStorage is defined elsewhere
+Tabs.Main:AddKeybind("Rapid Parry Activation", {
+    Title = "Rapid Parry Activation",
+    Mode = "Hold", 
+    Default = "C",
+    Callback = function(Value)
+        if Value then
+            parryButtonPress:Fire()
+        end
+    end,
+})
+
+local ParryDistanceConfig = Tabs.Main:AddSlider("Parry Distance Configuration", {
+    Title = "Parry Distance Configuration",
+    Description = "Adjust the effective parry distance",
+    Default = 20,
+    Min = 0,
+    Max = 300,
+    Rounding = 1,
+    Callback = function(Value)
+        sliderValue = Value -- Assuming sliderValue is defined globally or used in another function
+    end
+})
+
+ParryDistanceConfig:OnChanged(function(Value)
+    sliderValue = Value
+end)
+
+ParryDistanceConfig:SetValue(20)
+
+Tabs.Main2:AddButton({
+        Title = "Auto Win Games",
+        Description = "Basically this is very (OP) you just watch and win",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/kmmwhocare/Crazzy-Hub/main/Blade%20Ball",true))()
+ 
+    end
+})
+
+
+Tabs.Main2:AddButton({
+        Title = "Auto Parry V1",
+        Description = "Mobile & Pc",
+        Callback = function()
+            getgenv().ScriptConfig = {
+
+	DistanceBeforeParry = 46,
+}
+ 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Sussy-Tech/Scripts/main/BladeBall.lua"))()
+            
+    end
+})
+
+Tabs.Main2:AddButton({
+        Title = "Auto Parry V2",
+        Description = "Mobile & Pc",
+        Callback = function()
+            getgenv().visualizer = true
+loadstring(game:HttpGet("https://raw.githubusercontent.com/1f0yt/community/main/RedCircleBlock"))()
+
+    end
+})
+
+Tabs.Main2:AddButton({
+        Title = "Auto Parry V3",
+        Description = "Mobile & Pc Support 300ms BEST!",
+        Callback = function()
+            getgenv().config = getgenv().config or {
+	hit_time = 0.5, -- // recommended 0.25 to 0.75 \\ --
+ 
+	mode = 'Always', -- // Hold , Toggle , Always \\ --
+	deflect_type = 'Remote', -- // Key Press , Remote \\ --
+	notifications = true,
+	keybind = Enum.KeyCode.V
+}
+ 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Parry%20V4.0.0",true))()
+
+    end
+})
+
+Tabs.Main2:AddButton({
+        Title = "Target Mechanism",
+        Description = "For Mobile Only",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/M%3ABlade%20Ball%20Mechanism",true))()
+
+    end
+})
+
+Tabs.Main2:AddParagraph({
+        Title = "Close Combat",
+        Content = "This is for Close Combat When it Comes to Clash"
+    })
+
+Tabs.Main2:AddButton({
+        Title = "Auto Clicker",
+        Description = "Auto Clicker Toggle",
+        Callback = function()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/marmfjjwjw223/DownGroud/main/DOWNGROUND'))()
+            
+    end
+})
+
+Tabs.Main2:AddButton({
+        Title = "Hold Block Button to Spam",
+        Description = "Hold Block Button to Spam Close Range or Clash",
+        Callback = function()
+            getgenv().SpamSpeed = 1 loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Spam",true))()
+      
+    end
+})
+
+Tabs.Main2:AddParagraph({
+        Title = "Config",
+        Content = "Things can help you out"
+    })
+
+Tabs.Main2:AddButton({
+        Title = "Fps Booster",
+        Description = "Lessen Water effects and platform",
+        Callback = function()
+            _G.Settings = {
+    Players = {
+        ["Ignore Me"] = true, -- Ignore your Character
+        ["Ignore Others"] = true-- Ignore other Characters
+    },
+    Meshes = {
+        Destroy = false, -- Destroy Meshes
+        LowDetail = true -- Low detail meshes (NOT SURE IT DOES ANYTHING)
+    },
+    Images = {
+        Invisible = true, -- Invisible Images
+        LowDetail = false, -- Low detail images (NOT SURE IT DOES ANYTHING)
+        Destroy = false, -- Destroy Images
+    },
+    ["No Particles"] = true, -- Disables all ParticleEmitter, Trail, Smoke, Fire and Sparkles
+    ["No Camera Effects"] = true, -- Disables all PostEffect's (Camera/Lighting Effects)
+    ["No Explosions"] = true, -- Makes Explosion's invisible
+    ["No Clothes"] = true, -- Removes Clothing from the game
+    ["Low Water Graphics"] = true, -- Removes Water Quality
+    ["No Shadows"] = true, -- Remove Shadows
+    ["Low Rendering"] = true, -- Lower Rendering
+    ["Low Quality Parts"] = true -- Lower quality parts
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CasperFlyModz/discord.gg-rips/main/FPSBooster.lua"))()
+       
+    end
+})
+
+Tabs.Main2:AddButton({
+        Title = "WalkSpeed",
+        Description = "Increase WalkSpeed",
+        Callback = function()
+                   -- Variables
+local speedValue = 16 -- Default speed value
+
+-- Create GUI
+local gui = Instance.new("ScreenGui")
+gui.Name = "JN HH Gaming"
+gui.Parent = game.Players.LocalPlayer.PlayerGui
+
+local frame = Instance.new("Frame")
+frame.Name = "SpeedFrame"
+frame.Size = UDim2.new(0, 200, 0, 100)
+frame.Position = UDim2.new(0, 10, 0, 10)
+frame.BackgroundColor3 = Color3.new(0, 0, 0)
+frame.BackgroundTransparency = 0.5
+frame.Parent = gui
+
+local speedLabel = Instance.new("TextLabel")
+speedLabel.Name = "SpeedLabel"
+speedLabel.Size = UDim2.new(0, 180, 0, 30)
+speedLabel.Position = UDim2.new(0, 10, 0, 10)
+speedLabel.BackgroundColor3 = Color3.new(0, 0, 0)
+speedLabel.TextColor3 = Color3.new(1, 1, 1)
+speedLabel.TextSize = 18
+speedLabel.Text = "Speed: " .. speedValue
+speedLabel.Parent = frame
+
+local decreaseButton = Instance.new("TextButton")
+decreaseButton.Name = "DecreaseButton"
+decreaseButton.Size = UDim2.new(0, 50, 0, 30)
+decreaseButton.Position = UDim2.new(0, 10, 0, 50)
+decreaseButton.BackgroundColor3 = Color3.new(0, 1, 0)
+decreaseButton.TextColor3 = Color3.new(1, 1, 1)
+decreaseButton.TextSize = 14
+decreaseButton.Text = "-"
+decreaseButton.Parent = frame
+
+local increaseButton = Instance.new("TextButton")
+increaseButton.Name = "IncreaseButton"
+increaseButton.Size = UDim2.new(0, 50, 0, 30)
+increaseButton.Position = UDim2.new(0, 140, 0, 50)
+increaseButton.BackgroundColor3 = Color3.new(0, 1, 0)
+increaseButton.TextColor3 = Color3.new(1, 1, 1)
+increaseButton.TextSize = 14
+increaseButton.Text = "+"
+increaseButton.Parent = frame
+
+-- Functions
+local function updateSpeedLabel()
+    speedLabel.Text = "Speed: " .. speedValue
+end
+
+local function decreaseSpeed()
+    if speedValue > 1 then
+        speedValue = speedValue - 1
+        updateSpeedLabel()
+    end
+end
+
+local function increaseSpeed()
+    speedValue = speedValue + 1
+    updateSpeedLabel()
+end
+
+local function onDecreaseButtonClicked()
+    decreaseSpeed()
+end
+
+local function onIncreaseButtonClicked()
+    increaseSpeed()
+end
+
+-- Event connections
+decreaseButton.MouseButton1Click:Connect(onDecreaseButtonClicked)
+increaseButton.MouseButton1Click:Connect(onIncreaseButtonClicked)
+
+-- Main loop
+while true do
+    -- Modify the speed of the character (you need to replace this with the appropriate code for your specific game)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speedValue
+    wait(0.1) -- Adjust the wait time as desired
+end
+    end
+})
+
+Tabs.Main2:AddButton({
+        Title = "Keyboard",
+        Description = "Search LeftControl to hide Gui or Close/Open",
+        Callback = function()
+            loadstring(game:HttpGet("https://gist.githubusercontent.com/RedZenXYZ/4d80bfd70ee27000660e4bfa7509c667/raw/da903c570249ab3c0c1a74f3467260972c3d87e6/KeyBoard%2520From%2520Ohio%2520Fr%2520Fr"))()
+      
+    end
+})
+
+Tabs.Main3:AddParagraph({
+        Title = "Made By Prymoric",
+        Content = "Alaxus Hub"
+    })
+
+Tabs.Main3:AddButton({
+        Title = "Join My Discord Server (Click this to Copy Discord Link)",
+        Description = "To aware the update of alaxus or why its not working",
+        Callback = function()
+            setclipboard("https://discord.gg/VWtevRyBES")
+            DiscordNotification()
+            
+    end
+})
+            
+function DiscordNotification()
+    Fluent:Notify({
+        Title = "Copied Discord Link!",
+        Content = "The Discord link is in your clipboard",
+        SubContent = "Copied!", -- Optional
+        Duration = 5 -- Set to nil to make the notification not  
+
+    })
+end
